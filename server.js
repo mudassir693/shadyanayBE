@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false}))
 
 app.get('/',(req,res)=>{
     try {
-        return res.status(200).json({data:"Welcome to Shadyanay...",error:false,status:200})
+        return res.status(200).json({data:"Hi From Shadyanay...",error:false,status:200})
     } catch (error) {
         console.log(error);
         return res.status(500).json({data:error,error:true,status:500})
