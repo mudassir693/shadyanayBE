@@ -41,7 +41,7 @@ app.use('/catersAuth/',require('./Routes/catersAuth'))
 app.use('/caters/',require('./Routes/caters'))
 app.use('/usersAuth/',require('./Routes/UserAuth'))
 
-const port = 5000
+const port = process.env.PORT
 
 app.listen(port,()=>{
     console.log(`Shadyanay server running on PORT: 5000`);
