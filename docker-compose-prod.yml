@@ -1,0 +1,10 @@
+version: "3"
+services:
+  shadyanay-node:
+    # build: .
+    volumes:
+      - ".:/app"
+      - "/app/node_modules"
+    environment: 
+      - NODE_ENV=production
+    command: npm start
