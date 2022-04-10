@@ -40,6 +40,7 @@ app.use('/halls/',require('./Routes/halls'))
 app.use('/catersAuth/',require('./Routes/catersAuth'))
 app.use('/caters/',require('./Routes/caters'))
 app.use('/usersAuth/',require('./Routes/UserAuth'))
+app.use('/user/',require('./Routes/user'))
 
 const port = process.env.PORT
 

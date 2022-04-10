@@ -71,4 +71,39 @@ router.put('/updateByAdmin/:id',async(req,res)=>{
     }
 })
 
+// @route /user/getByName/:name
+// @desc get list of users by Name
+// Access Admin
+router.get('/getByName/:name',async(req,res)=>{
+    try {
+        const resp = await User.find({Name:{$regex: req.params.name.toUpperCase()}})
+        if(resp.length<1){
+            return res.status(400).json({data:'No result found.',error:true})
+        }
+        return res.status(200).json({data:resp,error:false})
+    } catch (error) {
+        return res.status(500).json({data:error,error:true})
+    }
+})
+
+// @route /user/getByName/:name
+// @desc get list of users by Name
+// Access Admin
+router.get('/getByName/:name',async(req,res)=>{
+    try {
+        const resp = await User.find({Name:{$regex: req.params.name.toUpperCase()}})
+        if(resp.length<1){
+            return res.status(400).json({data:'No result found.',error:true})
+        }
+        return res.status(200).json({data:resp,error:false})
+    } catch (error) {
+        return res.status(500).json({data:error,error:true})
+    }
+})
+
+// @route /user/get/:name
+// @desc get list of users by Name
+// @access Admin
+
+
 module.exports = router

@@ -17,7 +17,7 @@ router.post('/register',async(req,res)=>{
         } 
 
         const newUser = new User({
-            Name,
+            Name:Name.toUpperCase(),
             PhoneNumber,
             Address
         })
