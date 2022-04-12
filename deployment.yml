@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shadyanay-prod-deployment
+  labels:
+    app: shadyanay-prod
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: shadyanay-prod
+  template:
+    metadata:
+      labels:
+        app: shadyanay-prod
+    spec:
+      containers: 
+      - name: shadyanay-container
+        image: 03322504719/shadyanay-prod:v1.1
+        ports:
+        - containerPort: 5000
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: shadyanay-prod-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: Shadyanay-prod
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 30000
+
