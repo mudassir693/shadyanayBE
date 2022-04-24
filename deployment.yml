@@ -1,38 +1,56 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shadyanay-prod-deployment
+  name: nginx
   labels:
-    app: shadyanay-prod
+    app: nginx
 spec:
   replicas: 1
   selector: 
     matchLabels:
-      app: shadyanay-prod
+      app: nginx
   template:
     metadata:
       labels:
-        app: shadyanay-prod
+        app: nginx
     spec:
       containers: 
-      - name: shadyanay-container
+      - name: nginx
         image: 03322504719/shadyanay-prod:v1.1
         ports:
         - containerPort: 5000
         
+
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: shadyanay-prod-service
+  name: nginx
 spec:
-  type: LoadBalancer
   selector:
-    app: Shadyanay-prod
+    app: nginx
   ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-      nodePort: 30000
+    - port: 5000
 
+---
+
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-example.com
+  label:
+    app: nginx
+spec:
+  rules:
+  - host: nginx.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: nginx
+            port:
+              number: 5000
