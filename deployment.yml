@@ -16,9 +16,9 @@ spec:
     spec:
       containers: 
       - name: nginx
-        image: 03322504719/shadyanay-prod:v1.1
+        image: nginx
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         
 
 ---
@@ -28,10 +28,11 @@ kind: Service
 metadata:
   name: nginx
 spec:
+  # type: LoadBalancer
   selector:
     app: nginx
   ports:
-    - port: 5000
+    - port: 80
 
 ---
 
@@ -44,7 +45,7 @@ metadata:
     app: nginx
 spec:
   rules:
-  - host: nginx.example.com
+  - host: shadyanay.example.com
     http:
       paths:
       - path: /
@@ -53,4 +54,4 @@ spec:
           service: 
             name: nginx
             port:
-              number: 5000
+              number: 80
